@@ -5,6 +5,9 @@ const COLS = 26;
 
 let currentCell;
 let previousCell;
+let cutCell;
+let matrix = new Array(ROWS);
+
 
 let transparent = 'transparent';
 let transparentGreen = '#D3E3FD'
@@ -31,6 +34,18 @@ const fontSizeDropdown = document.getElementById("font-size");
 const textColorInput = document.getElementById("text-color-input");
 const bgColorInput = document.getElementById("bg-color-input");
 
+//creating a 2D array
+function createNewMatrix() {
+    for (let row = 0; row < ROWS; row++) {
+        matrix[row] = new Array(COLS);
+        for (let col = 0; col < COLS; col++) {
+            matrix[row][col] = {};
+        }
+    }
+}
+createNewMatrix();
+
+
 function colGen(typeOfCell, tableRow, isInnerText, rowNumber) {
     for (let col = 0; col < COLS; col++) {
         const cell = document.createElement(typeOfCell);
@@ -40,6 +55,7 @@ function colGen(typeOfCell, tableRow, isInnerText, rowNumber) {
         } else {
             cell.setAttribute("id", `${String.fromCharCode(col + 65)}${rowNumber}`);
             cell.setAttribute("contenteditable", true)
+            cell.addEventListener("input", updateObjInMatrix);
             // event.target is the current cell
             cell.addEventListener("focus", (event) => focusHandler(event.target))
         }
@@ -48,7 +64,22 @@ function colGen(typeOfCell, tableRow, isInnerText, rowNumber) {
 }
 // this is for heading coloumns
 colGen("th", tHeadRow, true);
+//in table we have col -> row 
+//in matrix we have row and then col
+function updateObjInMatrix() {
+    // console.log(matrix[0][0]);
+    let id = currentCell.id;
+    // id[0] gives 'A'  --> 'A.charCodeAt(0) gives 65    
+    let col = id[0].charCodeAt(0) - 65;
+    let row = id.substring(1) - 1;
+    matrix[row][col] = {
+        text: currentCell.innerText,
+        style: currentCell.style.cssText,
+        id: id,
+    }
+}
 
+// console.log(currentCell.id);
 // setting header color when focusing on a cell
 function setHeaderColor(colId, rowId, color) {
     const colHead = document.getElementById(colId);
@@ -76,6 +107,7 @@ function buttonHighlighter(button, styleProperty, style) {
 
 function focusHandler(cell) {
     currentCell = cell;
+    // console.log(currentCell.id);
     if (previousCell) {
         setHeaderColor(previousCell.id[0], previousCell.id.substring(1), transparent);
     }
@@ -123,20 +155,24 @@ function focusHandler(cell) {
 }
 
 // this is for rows
-for (let row = 1; row <= ROWS; row++) {
-    const tr = document.createElement("tr");
-    const th = document.createElement("th");
-    th.innerText = row;
-    th.setAttribute("id", row);
-    tr.append(th);
-    // for(let col=0; col<COLS; col++){
-    //     const td = document.createElement("td");
-    //     tr.append(td);
-    // }
-    // this is for empty td coloumns
-    colGen("td", tr, false, row);
-    tBody.append(tr);
+function tableBodyGen() {
+    tBody.innerHTML = '';
+    for (let row = 1; row <= ROWS; row++) {
+        const tr = document.createElement("tr");
+        const th = document.createElement("th");
+        th.innerText = row;
+        th.setAttribute("id", row);
+        tr.append(th);
+        // for(let col=0; col<COLS; col++){
+        //     const td = document.createElement("td");
+        //     tr.append(td);
+        // }
+        // this is for empty td coloumns
+        colGen("td", tr, false, row);
+        tBody.append(tr);
+    }
 }
+tableBodyGen();
 
 // boldBtn.addEventListener("click", () => {
 //     if (currentCell.style.fontWeight === "bold") {
@@ -182,7 +218,9 @@ function buttonEventListener(button, styleProperty, style) {
             currentCell.style[styleProperty] = style;
             button.style.backgroundColor = transparentGreen;
         }
+        updateObjInMatrix();
     })
+
 }
 
 buttonEventListener(leftBtn, "textAlign", "left");
@@ -222,19 +260,23 @@ buttonEventListener(centerBtn, "textAlign", "center");
 fontFamilyDropdown.addEventListener("change", (event) => {
     console.log(event.target);
     currentCell.style.fontFamily = fontFamilyDropdown.value;
+    updateObjInMatrix();
 });
 
 fontSizeDropdown.addEventListener("change", (event) => {
     console.log(event.target);
     currentCell.style.fontSize = fontSizeDropdown.value;
+    updateObjInMatrix();
 });
 
 textColorInput.addEventListener("input", () => {
     currentCell.style.color = textColorInput.value;
+    updateObjInMatrix();
 });
 
 bgColorInput.addEventListener("input", () => {
     currentCell.style.backgroundColor = bgColorInput.value;
+    updateObjInMatrix();
 })
 
 
@@ -255,6 +297,7 @@ cutBtn.addEventListener("click", () => {
     //deleting currentcell text
     currentCell.innerText = '';
     currentCell.style.cssText = '';
+    updateObjInMatrix();
 })
 
 pasteBtn.addEventListener("click", () => {
@@ -265,11 +308,15 @@ pasteBtn.addEventListener("click", () => {
     if (lastPressedBtn === 'cut') {
         cutCell = undefined;
     }
+    updateObjInMatrix();
 });
-copyCutPaste(button, type, )
-function copyCutPaste(){
-    if(button==="pasteBtn"){
-        currentCell.innerText = cutCell.text;
-        currentCell.style = cutCell.style;
-    }
-}
+// copyCutPaste(button, type, )
+// function copyCutPaste(){
+//     if(button==="pasteBtn"){
+//         currentCell.innerText = cutCell.text;
+//         currentCell.style = cutCell.style;
+//     }
+// }
+
+
+

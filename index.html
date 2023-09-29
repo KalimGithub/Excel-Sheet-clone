@@ -27,7 +27,9 @@
             <button id="cut-btn"><i class="cut-btn fa-solid fa-scissors"></i></button>
             <button id="paste-btn"><i class="paste-btn fa-regular fa-paste"></i></button>
 
-            <select name="font-size" id="font-size">
+            <!-- <div class="font-size-editable"> -->
+            <select class="font-size" name="font-size" id="font-size">
+                <option value="10px">10</option>
                 <option value="12px">12</option>
                 <option value="14px">14</option>
                 <option value="16px">16</option>
@@ -36,7 +38,8 @@
                 <option value="22px">22</option>
                 <option value="24px">24</option>
             </select>
-            <select name="font-family" id="font-family">
+            <!-- </div> -->
+            <select class="font-family" name="font-family" id="font-family">
                 <option value="sans-serif">San-Serif</option>
                 <option value="serif">Serif</option>
                 <option value="monospace">Monospace</option>
@@ -56,6 +59,8 @@
             <input id="bg-color-input" type="color">
             <button><i class="fa-solid fa-cloud-arrow-down fa-xl"></i></button>
             <button><i class="fa-solid fa-cloud-arrow-up fa-xl"></i></button>
+
+            <button id="add-sheet"><i class="fa-solid fa-file-circle-plus fa-xl"></i></button>
         </div>
 
         <!-- cell ID conatiner -->
