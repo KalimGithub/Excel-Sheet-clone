@@ -1,0 +1,120 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    background-color: #ECF0F1;
+}
+
+/* style for header */
+.header {
+    display: flex;
+    background-color: #218C74;
+    width: 100%;
+    padding-top: 1rem;
+    padding-left: 1.5rem;
+    color: white;
+    /* position:fixed; */
+    top: 0;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.header p {
+    padding: 0.6rem;
+    width: auto;
+    background-color: #218C74;
+}
+
+#home {
+    background-color: #ECF0F1;
+    color: #218C74;
+}
+
+/* style for button container */
+.btn-container {
+    display: inline;
+    text-align: center;
+    align-items: center;
+}
+
+button {
+    margin-inline: 0.2rem;
+    padding: 0.2rem;
+    border: none;
+    cursor: pointer;
+}
+
+select {
+    padding: 5px;
+    border: 1px solid rgb(185, 182, 182);
+    border-radius: 5px;
+    background-color: white;
+    outline: none;
+}
+
+/* 
+.copy-btn,
+.cut-btn,
+.paste.btn {
+    margin: 10px 5px;
+    margin-inline: 0.6rem;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+*/
+
+/* style for cell ID container */
+.cell-id-div {
+    background-color: #ECF0F1;
+    width: 100vw;
+    margin: 5px 10px;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+#current-cell-heading {
+    background-color: white;
+    padding: 0.4rem;
+    width: 3rem;
+    padding-inline: 20px;
+    text-align: center;
+}
+
+#fx-input {
+    width: 88%;
+    border: none;
+    background-color: white;
+    /* margin-left: 10px; */
+    padding: 0.4rem;
+}
+
+#fx-input:focus {
+    border: none;
+    outline: none;
+}
+
+/* style for table container */
+.table-container {
+    overflow: auto;
+    width: 100%;
+}
+
+table {
+    border: 1px solid rgb(113, 111, 111);
+    border-collapse: collapse;
+
+}
+
+td,
+th {
+    border: 0.5px solid rgb(103, 99, 99);
+    min-width: 80px;
+    padding: 0.3rem;
+}
+
+td {
+    outline: none;
+}
+
+#empty-first-th {
+    background-color: rgb(141, 141, 141);
+}

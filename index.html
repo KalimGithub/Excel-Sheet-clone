@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <!-- header container -->
+
+    <div class="header">
+        <p>File</p>
+        <p id="home">Home</p>
+        <p>Insert</p>
+        <p>Layout</p>
+        <p>Help</p>
+    </div>
+
+    <div>
+        <!-- buttons container -->
+        <div class="btn-container">
+            <button id="copy-btn"> <i class="copy-btn fa-regular fa-copy"></i></button>
+            <button id="cut-btn"><i class="cut-btn fa-solid fa-scissors"></i></button>
+            <button id="paste-btn"><i class="paste-btn fa-regular fa-paste"></i></button>
+
+            <select name="font-size" id="font-size">
+                <option value="12px">12</option>
+                <option value="14px">14</option>
+                <option value="16px">16</option>
+                <option value="18px">18</option>
+                <option value="20px">20</option>
+                <option value="22px">22</option>
+                <option value="24px">24</option>
+            </select>
+            <select name="font-family" id="font-family">
+                <option value="sans-serif">San-Serif</option>
+                <option value="serif">Serif</option>
+                <option value="monospace">Monospace</option>
+                <option value="cursive">Cursive</option>
+                <option value="fantasy">Fantasy</option>
+            </select>
+
+            <button id="bold-btn"><b>B</b></button>
+            <button id="italic-btn"><i><b>i</b></i></button>
+            <button id="underline-btn"><u><b>U</b></u></button>
+            <button id="left"><i class="fa-solid fa-align-left"></i></button>
+            <button id="center"><i class="fa-solid fa-align-center"></i></button>
+            <button id="right"><i class="fa-solid fa-align-right"></i></button>
+            <label for="color">Text-color</label>
+            <input id="text-color-input" type="color">
+            <label for="color">BG-color</label>
+            <input id="bg-color-input" type="color">
+            <button><i class="fa-solid fa-cloud-arrow-down fa-xl"></i></button>
+            <button><i class="fa-solid fa-cloud-arrow-up fa-xl"></i></button>
+        </div>
+
+        <!-- cell ID conatiner -->
+        <div class="cell-id-div">
+            <p id="current-cell-heading">A1</p>
+            <label for="input"><i>fx</i></label>
+            <input id="fx-input" type="text" placeholder="">
+        </div>
+        <!-- table of cell container -->
+        <div class="table-container">
+            <table id="table" class="table">
+                <thead class="t-head">
+                    <tr id="t-head-row">
+                        <th id="empty-first-th"></th>
+                        <!--<th>A</th>
+                    <th>B</th> -->
+                    </tr>
+                </thead>
+                <tbody id="t-body">
+                    <!--
+            <tr>
+               <th>1</th>
+            </tr>
+            <tr>
+               <th>2</th>
+            </tr>
+            -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="./script.js"></script>
+</body>
+
+</html>
