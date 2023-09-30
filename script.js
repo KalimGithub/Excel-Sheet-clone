@@ -28,6 +28,7 @@ const centerBtn = document.getElementById("center");
 const copyBtn = document.getElementById("copy-btn");
 const cutBtn = document.getElementById("cut-btn");
 const pasteBtn = document.getElementById("paste-btn");
+const uploadInput = document.getElementById("upload-input");
 
 const fontFamilyDropdown = document.getElementById("font-family");
 const fontSizeDropdown = document.getElementById("font-size");
@@ -87,6 +88,34 @@ function setHeaderColor(colId, rowId, color) {
     colHead.style.backgroundColor = color;
     rowHead.style.backgroundColor = color;
 }
+
+function downloadMatrix() {
+    // 2d matrix into memory file
+    const matrixString = JSON.stringify(matrix);
+    // matrixString to Blob
+    const blob = new Blob([matrixString], { type: 'application/json' });
+    // console.log(blob);
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);//converts blob to link
+    link.download = 'table.json';
+    link.click()
+}
+
+function uploadMatrix(event) {
+    const file = event.target.files[0];
+    // filereader helps to read blob
+    if (file) {
+        const reader = new FileReader();
+        reader.readAsText(file);
+        // this will trigger onload method of reader instance
+        reader.onload = function (event) {
+            const fileContent = JSON.parse(event.target.result);
+            // console.log(fileContent);
+        }
+    }
+}
+uploadInput.addEventListener("input", uploadMatrix);
+
 
 //button -> bold btn, italic btn, underline btn
 //styleProperty -> fontWeight, fontStyle, textDecoration
